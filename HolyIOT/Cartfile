@@ -1,0 +1,5 @@
+github "utahiosmac/Marshal"
+github "WorldDownTown/Benchmark"
+github "ReactiveX/RxSwift" ~> 4.0
+github "RxSwiftCommunity/RxGesture" ~> 1.1.1
+github "lkzhao/Hero"

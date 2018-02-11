@@ -92,7 +92,7 @@ extension HolyCentralManager: CBCentralManagerDelegate, HolyScanProtocol, HolyCo
     }
     
     func startScan() {
-        centralManager.scanForPeripherals(withServices: [HolyIOT.cbuuid], options: [CBCentralManagerScanOptionAllowDuplicatesKey:false])
+        centralManager.scanForPeripherals(withServices: nil, options: [CBCentralManagerScanOptionAllowDuplicatesKey:false])
     }
     
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {

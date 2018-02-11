@@ -13,7 +13,7 @@ import CoreBluetooth
 enum SectionEnum: Int {
     case connected = 0
     case other = 1
-    init(deviceState: HolyDevice.DeviceState){
+    init(deviceState: State){
         self = deviceState == .connected ? .connected : .other
     }
     
@@ -114,6 +114,28 @@ class DeviceListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
 
 extension DeviceListVC: HolyCentralManagerProtocol {
     
+    
+    func updated(id: String) {
+        
+        guard let previousDevice = devices[id] else {return}
+        
+        let previousIndexPath  = indexPathForDevice(previousDevice)
+        
+        sort()
+        
+        let newIndexPath = indexPathForDevice(devices[id]!)
+        
+        tableView.beginUpdates()
+        if previousIndexPath != newIndexPath {
+            tableView.deleteRows(at: [previousIndexPath], with: .fade)
+            tableView.insertRows(at: [newIndexPath], with: .fade)
+        } else {
+            tableView.reloadRows(at: [previousIndexPath], with: .fade)
+        }
+        tableView.endUpdates()
+    }
+    
+    
     func bluetoothPoweredOff() {
         showBlutoothPoweredOffStatusAlert()
     }
@@ -182,7 +204,7 @@ extension DeviceListVC: HolyCentralManagerProtocol {
         
         let previousIndexPath  = indexPathForDevice(previousDevice)
         
-        devices[peripheral.id]!.peripheral = peripheral
+//        devices[peripheral.id]!.peripheral = peripheral
         sort()
         
         let newIndexPath = indexPathForDevice(devices[peripheral.id]!)
@@ -197,13 +219,12 @@ extension DeviceListVC: HolyCentralManagerProtocol {
         tableView.endUpdates()
         
     }
-    
-    func connected(device: HolyDevice) {
-        
+    func connected(_ deviceId: String) {
+        updated(id: deviceId)
     }
     
-    func disconnected(device: HolyDevice) {
-        
+    func disconnected(_ deviceId: String) {
+        updated(id: deviceId)
     }
 }
 

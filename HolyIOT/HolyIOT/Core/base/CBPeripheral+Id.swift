@@ -8,7 +8,7 @@
 import CoreBluetooth
 
 extension CBPeripheral {
-    var id: String {
-        return identifier.uuidString
+    static func ==(lhs: CBPeripheral, rhs: CBPeripheral) -> Bool {
+        return lhs.id == rhs.id
     }
 }

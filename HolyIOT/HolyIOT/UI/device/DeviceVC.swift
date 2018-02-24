@@ -124,15 +124,15 @@ extension DeviceVC: HolyDeviceProtocol {
     }
     
     func holyDevice(_ holyDevice: HolyDevice, didReceiveBarometerValue value: Int) {
-        tableView.sensorCell(for: 3)?.value.text = "\(value)"
+        tableView.sensorCell(for: 3)?.value.text = "\(value)" + "Pa"
     }
     
-    func holyDevice(_ holyDevice: HolyDevice, didReceiveHumidityValue value: Int) {
-        tableView.sensorCell(for: 4)?.value.text = "\(value)"
+    func holyDevice(_ holyDevice: HolyDevice, didReceiveHumidityValue value: Float) {
+        tableView.sensorCell(for: 4)?.value.text = String(format: "%.3f", value) + "%"
     }
     
-    func holyDevice(_ holyDevice: HolyDevice, didReceiveTemperatureValue value: Int) {
-        tableView.sensorCell(for: 5)?.value.text = "\(value)"
+    func holyDevice(_ holyDevice: HolyDevice, didReceiveTemperatureValue value: Float) {
+        tableView.sensorCell(for: 5)?.value.text = String(format: "%.3f", value) + "℃"
     }
     
     func holyDevice(_ holyDevice: HolyDevice, didReceiveSFLData data: SFLData) {

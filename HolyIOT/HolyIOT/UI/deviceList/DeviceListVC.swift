@@ -98,7 +98,8 @@ class DeviceListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
         let device = deviceForIndexPath(indexPath)
-        router.showDeviceInfoInterface(from: self, device: device)
+        router.showSceneInterface(from: self, device: device)
+//        router.showDeviceInfoInterface(from: self, device: device)
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

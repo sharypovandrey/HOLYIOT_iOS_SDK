@@ -58,7 +58,7 @@ final class HolyIOT {
     
     
     /*old UUIDs*/
-    static let oldServiceUUID = "2EA78970-7D44-44BB-B097-26183F402400"
+    static let advertisementServiceUUID = "6E400000-B5A3-F393-E0A9-E50E24DCCA9E"
 //    fileprivate static let powerUUID = "2EA78970-7D44-44BB-B097-26183F402409"
 //    fileprivate static let accelerometerUUID = "2EA78970-7D44-44BB-B097-26183F402401"
 //    fileprivate static let gyroscopeUUID = "2EA78970-7D44-44BB-B097-26183F402402"
@@ -79,7 +79,7 @@ final class HolyIOT {
     fileprivate static let powerAnswerUUID = "6E40000A-B5A3-F393-E0A9-E50E24DCCA9E"
     
     static var cbuuid: CBUUID {
-        return CBUUID(string: serviceUUID)
+        return CBUUID(string: advertisementServiceUUID)
     }
 }
 
@@ -119,7 +119,7 @@ extension CBPeripheral {
 
 extension CBService {
     var isHolyIOT: Bool {
-        return id == HolyIOT.serviceUUID || id == HolyIOT.oldServiceUUID
+        return id == HolyIOT.serviceUUID
     }
     
     func findCharacteristicWithSensorType(_ sensorType: SensorType) -> CBCharacteristic? {

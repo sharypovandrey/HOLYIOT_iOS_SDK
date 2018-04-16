@@ -11,6 +11,7 @@ extension UIApplicationDelegate {
     var mainStoryboard:UIStoryboard {
         return UIStoryboard(name: "Main", bundle: Bundle.main)
     }
+
     /**
      Show device info
      
@@ -21,6 +22,20 @@ extension UIApplicationDelegate {
     
     func showDeviceInfoInterface<C: UIViewController>(from viewController: C, device: HolyDevice) {
         let vc = mainStoryboard.instantiate(DeviceVC.self)
+        vc.device = device
+        viewController.show(vc, sender: nil)
+    }
+
+    /**
+     Show device info
+
+     - Parameters:
+     - viewController: viewController
+     - device: device
+     */
+
+    func showSceneInterface<C: UIViewController>(from viewController: C, device: HolyDevice) {
+        let vc = mainStoryboard.instantiate(SceneVC.self)
         vc.device = device
         viewController.show(vc, sender: nil)
     }

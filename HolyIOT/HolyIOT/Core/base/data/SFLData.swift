@@ -45,10 +45,10 @@ extension CBCharacteristic {
         if let value = value {
             let byteArray = [UInt8](value)
             guard byteArray.count == 11 else {return SFLData()}
-            let x = Float(Int16(byteArray[3]) | Int16(byteArray[4]) << 8)
-            let y = Float(Int16(byteArray[5]) | Int16(byteArray[6]) << 8)
-            let z = Float(Int16(byteArray[7]) | Int16(byteArray[8]) << 8)
-            let w = Float(Int16(byteArray[9]) | Int16(byteArray[10]) << 8)
+            let x = Float(Int16(byteArray[3]) | Int16(byteArray[4]) << 8)/32000.0
+            let y = Float(Int16(byteArray[5]) | Int16(byteArray[6]) << 8)/32000.0
+            let z = Float(Int16(byteArray[7]) | Int16(byteArray[8]) << 8)/32000.0
+            let w = Float(Int16(byteArray[9]) | Int16(byteArray[10]) << 8)/32000.0
             return SFLData(x: x, y: y, z: z, w: w)
         } else {
             return SFLData()

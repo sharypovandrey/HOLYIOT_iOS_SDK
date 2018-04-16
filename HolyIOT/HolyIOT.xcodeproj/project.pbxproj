@@ -23,6 +23,7 @@
 		854EC57F202DDEA5002DFD2A /* SensorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854EC57E202DDEA5002DFD2A /* SensorCell.swift */; };
 		854EC582202E043E002DFD2A /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854EC581202E043E002DFD2A /* UITableView+Extension.swift */; };
 		854EC58720303F59002DFD2A /* WeakRef.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854EC58620303F59002DFD2A /* WeakRef.swift */; };
+		8556741B2084ECEA00529CBB /* SceneVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8556741A2084ECEA00529CBB /* SceneVC.swift */; };
 		857F11E22029EBFF00DBA2EE /* AdvertisementData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857F11E12029EBFF00DBA2EE /* AdvertisementData.swift */; };
 		85E8A64F20049D6700F90B5B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E8A64E20049D6700F90B5B /* AppDelegate.swift */; };
 		85E8A65120049D6700F90B5B /* DeviceListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E8A65020049D6700F90B5B /* DeviceListVC.swift */; };
@@ -63,6 +64,7 @@
 		854EC57E202DDEA5002DFD2A /* SensorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorCell.swift; sourceTree = "<group>"; };
 		854EC581202E043E002DFD2A /* UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
 		854EC58620303F59002DFD2A /* WeakRef.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakRef.swift; sourceTree = "<group>"; };
+		8556741A2084ECEA00529CBB /* SceneVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneVC.swift; sourceTree = "<group>"; };
 		857F11E12029EBFF00DBA2EE /* AdvertisementData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvertisementData.swift; sourceTree = "<group>"; };
 		85E8A64B20049D6700F90B5B /* HolyIOT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HolyIOT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		85E8A64E20049D6700F90B5B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -154,6 +156,14 @@
 			path = view;
 			sourceTree = "<group>";
 		};
+		855674192084EC9F00529CBB /* visualModel */ = {
+			isa = PBXGroup;
+			children = (
+				8556741A2084ECEA00529CBB /* SceneVC.swift */,
+			);
+			path = visualModel;
+			sourceTree = "<group>";
+		};
 		85E8A64220049D6700F90B5B = {
 			isa = PBXGroup;
 			children = (
@@ -199,6 +209,7 @@
 			isa = PBXGroup;
 			children = (
 				854EC580202E03DD002DFD2A /* view */,
+				855674192084EC9F00529CBB /* visualModel */,
 				85E8A67F2005DC4600F90B5B /* device */,
 				85E8A67E2005DC3C00F90B5B /* deviceList */,
 				85E8A65220049D6700F90B5B /* Main.storyboard */,
@@ -337,6 +348,7 @@
 				854D19972028714600A925FF /* TemperatureData.swift in Sources */,
 				854D198F20286C1F00A925FF /* GyroscopeData.swift in Sources */,
 				85E8A68720064B3900F90B5B /* UIViewController+Router.swift in Sources */,
+				8556741B2084ECEA00529CBB /* SceneVC.swift in Sources */,
 				85E8A6812006050700F90B5B /* CBPeripheral+Id.swift in Sources */,
 				85E8A67D2005DBCE00F90B5B /* UIColor+Colors.swift in Sources */,
 				854D199B2028AD0200A925FF /* SFLData.swift in Sources */,

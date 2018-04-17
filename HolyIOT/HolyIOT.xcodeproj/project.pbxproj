@@ -24,6 +24,7 @@
 		854EC582202E043E002DFD2A /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854EC581202E043E002DFD2A /* UITableView+Extension.swift */; };
 		854EC58720303F59002DFD2A /* WeakRef.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854EC58620303F59002DFD2A /* WeakRef.swift */; };
 		8556741B2084ECEA00529CBB /* SceneVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8556741A2084ECEA00529CBB /* SceneVC.swift */; };
+		855674202086508800529CBB /* Yunjia.obj in Resources */ = {isa = PBXBuildFile; fileRef = 8556741F2086508800529CBB /* Yunjia.obj */; };
 		857F11E22029EBFF00DBA2EE /* AdvertisementData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857F11E12029EBFF00DBA2EE /* AdvertisementData.swift */; };
 		85E8A64F20049D6700F90B5B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E8A64E20049D6700F90B5B /* AppDelegate.swift */; };
 		85E8A65120049D6700F90B5B /* DeviceListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E8A65020049D6700F90B5B /* DeviceListVC.swift */; };
@@ -65,6 +66,7 @@
 		854EC581202E043E002DFD2A /* UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
 		854EC58620303F59002DFD2A /* WeakRef.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakRef.swift; sourceTree = "<group>"; };
 		8556741A2084ECEA00529CBB /* SceneVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneVC.swift; sourceTree = "<group>"; };
+		8556741F2086508800529CBB /* Yunjia.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Yunjia.obj; sourceTree = "<group>"; };
 		857F11E12029EBFF00DBA2EE /* AdvertisementData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvertisementData.swift; sourceTree = "<group>"; };
 		85E8A64B20049D6700F90B5B /* HolyIOT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HolyIOT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		85E8A64E20049D6700F90B5B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -188,6 +190,7 @@
 				85E8A6602004BA5300F90B5B /* Core */,
 				85E8A64E20049D6700F90B5B /* AppDelegate.swift */,
 				85E8A6822006451000F90B5B /* AppDelegate+Router.swift */,
+				8556741F2086508800529CBB /* Yunjia.obj */,
 				85E8A6842006455700F90B5B /* UIStoryboard+Router.swift */,
 				85E8A65520049D6700F90B5B /* Assets.xcassets */,
 				85E8A65A20049D6700F90B5B /* Info.plist */,
@@ -312,6 +315,7 @@
 				85E8A65920049D6700F90B5B /* LaunchScreen.storyboard in Resources */,
 				85E8A65620049D6700F90B5B /* Assets.xcassets in Resources */,
 				85E8A65420049D6700F90B5B /* Main.storyboard in Resources */,
+				855674202086508800529CBB /* Yunjia.obj in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

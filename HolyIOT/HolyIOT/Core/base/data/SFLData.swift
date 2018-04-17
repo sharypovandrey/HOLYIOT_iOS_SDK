@@ -40,15 +40,19 @@ struct SFLData: CustomStringConvertible {
 }
 
 extension CBCharacteristic {
+
+    fileprivate var divider: Float {
+        return 32768.0
+    }
     
     var sflData: SFLData {
         if let value = value {
             let byteArray = [UInt8](value)
             guard byteArray.count == 11 else {return SFLData()}
-            let x = Float(Int16(byteArray[3]) | Int16(byteArray[4]) << 8)/32000.0
-            let y = Float(Int16(byteArray[5]) | Int16(byteArray[6]) << 8)/32000.0
-            let z = Float(Int16(byteArray[7]) | Int16(byteArray[8]) << 8)/32000.0
-            let w = Float(Int16(byteArray[9]) | Int16(byteArray[10]) << 8)/32000.0
+            let x = Float(Int16(byteArray[3]) | Int16(byteArray[4]) << 8)/divider
+            let y = Float(Int16(byteArray[5]) | Int16(byteArray[6]) << 8)/divider
+            let z = Float(Int16(byteArray[7]) | Int16(byteArray[8]) << 8)/divider
+            let w = Float(Int16(byteArray[9]) | Int16(byteArray[10]) << 8)/divider
             return SFLData(x: x, y: y, z: z, w: w)
         } else {
             return SFLData()

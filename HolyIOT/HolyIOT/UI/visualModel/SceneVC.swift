@@ -39,11 +39,14 @@ class SceneVC: UIViewController {
         scene.rootNode.addChildNode(cameraNode)
         scene.rootNode.addChildNode(cubeNode)
 
-        device.delegate = self
-
         let _ = device.turnOn()
 
         device.setNotifyValue(true, for: .sfl)
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        device.delegate = self
     }
 }
 

@@ -20,7 +20,15 @@ class DeviceVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = device.name ?? "no name"
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         connectionSwitch.setOn(device.state == .connected, animated: true)
+        if device.state != .connected {
+            sensorDataSwitch.setOn(false, animated: true)
+            tableView.switchOffAll()
+        }
         device.delegate = self
     }
     
@@ -88,7 +96,14 @@ class DeviceVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             fatalError("unknown sensor type cell")
             break
         }
+        sersorCell.selectionStyle = .none
         return sersorCell
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row == 6 {
+            router.showSceneInterface(from: self, device: device)
+        }
     }
 
 }

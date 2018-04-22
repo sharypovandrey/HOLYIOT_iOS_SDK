@@ -90,10 +90,45 @@ extension SceneVC: HolyDeviceProtocol {
         let qz = data.z
         let qw = data.w
 
-        let roll  = atan2(2*qy*qw - 2*qx*qz, 1 - 2*qy*qy - 2*qz*qz)
-        let pitch = atan2(2*qx*qw - 2*qy*qz, 1 - 2*qx*qx - 2*qz*qz)
-        let yaw   = asin(2*qx*qy + 2*qz*qw)
+        /*!
+         1. Pitch
+         2. Yaw
+         3. Roll
 
-        cubeNode.eulerAngles = SCNVector3(x: yaw, y: -pitch, z: roll)
+         1. first roll
+         2. then yaw
+         3. then pitch
+         */
+
+        let vector = toEulerAngle(q: SCNQuaternion(x: qx, y: qy, z: qz, w: qw))
+
+        //           pitch         yaw        roll
+        print("new \(vector.x) \(vector.y) \(vector.z)")
+
+        cubeNode.eulerAngles = SCNVector3(x: vector.y, y: -vector.z, z: vector.x)
+    }
+
+    func toEulerAngle(q: SCNQuaternion) -> SCNVector3 {
+        // roll (x-axis rotation)
+        let sinr = 2.0 * (q.w * q.x + q.y * q.z)
+        let cosr = 1.0 - 2.0 * (q.x * q.x + q.y * q.y)
+        let roll = atan2(sinr, cosr)
+
+        // pitch (y-axis rotation)
+        let sinp = 2.0 * (q.w * q.y - q.z * q.x)
+
+        var pitch: Float!
+        if (fabs(sinp) >= 1) {
+            pitch = copysign(Float.pi / 2, sinp) // use 90 degrees if out of range
+        } else {
+            pitch = asin(sinp)
+        }
+
+        // yaw (z-axis rotation)
+        let siny = +2.0 * (q.w * q.z + q.x * q.y)
+        let cosy = +1.0 - 2.0 * (q.y * q.y + q.z * q.z)
+        let yaw = atan2(siny, cosy)
+
+        return SCNVector3(x: pitch, y: yaw, z: roll)
     }
 }

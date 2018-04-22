@@ -85,12 +85,15 @@ extension SceneVC: HolyDeviceProtocol {
 
     func holyDevice(_ holyDevice: HolyDevice, didReceiveSFLData data: SFLData) {
 
-        var rotationVector = SCNQuaternion()
-        rotationVector.x = data.x
-        rotationVector.y = data.y
-        rotationVector.z = data.z
-        rotationVector.w = data.w
+        let qx = data.x
+        let qy = data.y
+        let qz = data.z
+        let qw = data.w
 
-        cubeNode.rotation = rotationVector
+        let roll  = atan2(2*qy*qw - 2*qx*qz, 1 - 2*qy*qy - 2*qz*qz)
+        let pitch = atan2(2*qx*qw - 2*qy*qz, 1 - 2*qx*qx - 2*qz*qz)
+        let yaw   = asin(2*qx*qy + 2*qz*qw)
+
+        cubeNode.eulerAngles = SCNVector3(x: yaw, y: -pitch, z: roll)
     }
 }

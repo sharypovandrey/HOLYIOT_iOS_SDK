@@ -25,6 +25,7 @@
 		854EC58720303F59002DFD2A /* WeakRef.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854EC58620303F59002DFD2A /* WeakRef.swift */; };
 		8556741B2084ECEA00529CBB /* SceneVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8556741A2084ECEA00529CBB /* SceneVC.swift */; };
 		855674202086508800529CBB /* Yunjia.obj in Resources */ = {isa = PBXBuildFile; fileRef = 8556741F2086508800529CBB /* Yunjia.obj */; };
+		855B8E3D2094E1070013BA9A /* DataChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855B8E3C2094E1070013BA9A /* DataChartViewController.swift */; };
 		857F11E22029EBFF00DBA2EE /* AdvertisementData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857F11E12029EBFF00DBA2EE /* AdvertisementData.swift */; };
 		85E8A64F20049D6700F90B5B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E8A64E20049D6700F90B5B /* AppDelegate.swift */; };
 		85E8A65120049D6700F90B5B /* DeviceListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E8A65020049D6700F90B5B /* DeviceListVC.swift */; };
@@ -67,6 +68,7 @@
 		854EC58620303F59002DFD2A /* WeakRef.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakRef.swift; sourceTree = "<group>"; };
 		8556741A2084ECEA00529CBB /* SceneVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneVC.swift; sourceTree = "<group>"; };
 		8556741F2086508800529CBB /* Yunjia.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Yunjia.obj; sourceTree = "<group>"; };
+		855B8E3C2094E1070013BA9A /* DataChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataChartViewController.swift; sourceTree = "<group>"; };
 		857F11E12029EBFF00DBA2EE /* AdvertisementData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvertisementData.swift; sourceTree = "<group>"; };
 		85E8A64B20049D6700F90B5B /* HolyIOT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HolyIOT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		85E8A64E20049D6700F90B5B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -150,20 +152,28 @@
 			path = data;
 			sourceTree = "<group>";
 		};
-		854EC580202E03DD002DFD2A /* view */ = {
+		854EC580202E03DD002DFD2A /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				854EC581202E043E002DFD2A /* UITableView+Extension.swift */,
 			);
-			path = view;
+			path = Views;
 			sourceTree = "<group>";
 		};
-		855674192084EC9F00529CBB /* visualModel */ = {
+		855674192084EC9F00529CBB /* VisualModel */ = {
 			isa = PBXGroup;
 			children = (
 				8556741A2084ECEA00529CBB /* SceneVC.swift */,
 			);
-			path = visualModel;
+			path = VisualModel;
+			sourceTree = "<group>";
+		};
+		855B8E3B2094E0010013BA9A /* DataChart */ = {
+			isa = PBXGroup;
+			children = (
+				855B8E3C2094E1070013BA9A /* DataChartViewController.swift */,
+			);
+			path = DataChart;
 			sourceTree = "<group>";
 		};
 		85E8A64220049D6700F90B5B = {
@@ -211,10 +221,11 @@
 		85E8A6612004BA5D00F90B5B /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				854EC580202E03DD002DFD2A /* view */,
-				855674192084EC9F00529CBB /* visualModel */,
-				85E8A67F2005DC4600F90B5B /* device */,
-				85E8A67E2005DC3C00F90B5B /* deviceList */,
+				854EC580202E03DD002DFD2A /* Views */,
+				855B8E3B2094E0010013BA9A /* DataChart */,
+				855674192084EC9F00529CBB /* VisualModel */,
+				85E8A67F2005DC4600F90B5B /* Device */,
+				85E8A67E2005DC3C00F90B5B /* DeviceList */,
 				85E8A65220049D6700F90B5B /* Main.storyboard */,
 				85E8A65720049D6700F90B5B /* LaunchScreen.storyboard */,
 				85E8A67C2005DBCE00F90B5B /* UIColor+Colors.swift */,
@@ -235,22 +246,22 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		85E8A67E2005DC3C00F90B5B /* deviceList */ = {
+		85E8A67E2005DC3C00F90B5B /* DeviceList */ = {
 			isa = PBXGroup;
 			children = (
 				85E8A6642004E6DE00F90B5B /* DeviceCell.swift */,
 				85E8A65020049D6700F90B5B /* DeviceListVC.swift */,
 			);
-			path = deviceList;
+			path = DeviceList;
 			sourceTree = "<group>";
 		};
-		85E8A67F2005DC4600F90B5B /* device */ = {
+		85E8A67F2005DC4600F90B5B /* Device */ = {
 			isa = PBXGroup;
 			children = (
 				85E8A6662004ECD300F90B5B /* DeviceVC.swift */,
 				854EC57E202DDEA5002DFD2A /* SensorCell.swift */,
 			);
-			path = device;
+			path = Device;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -364,6 +375,7 @@
 				85E8A6632004C38900F90B5B /* HolyCentralManager.swift in Sources */,
 				852AD222200DE8A100E985C9 /* ConnectionTimeoutProtocol.swift in Sources */,
 				85E8A64F20049D6700F90B5B /* AppDelegate.swift in Sources */,
+				855B8E3D2094E1070013BA9A /* DataChartViewController.swift in Sources */,
 				85E8A6852006455700F90B5B /* UIStoryboard+Router.swift in Sources */,
 				854EC58720303F59002DFD2A /* WeakRef.swift in Sources */,
 				85E8A6692004F2EC00F90B5B /* HolyDevice.swift in Sources */,

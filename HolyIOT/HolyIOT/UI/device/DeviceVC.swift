@@ -5,9 +5,19 @@
 //  Created by Nikita Vashchenko on 09.01.18.
 //
 
+import CoreBluetooth
 import UIKit
 
-class DeviceVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class DeviceVC: UIViewController, UITableViewDelegate, UITableViewDataSource, CBCentralManagerDelegate {
+    func centralManagerDidUpdateState(_ central: CBCentralManager) {
+        print("centralManagerDidUpdateState \(central.state)")
+        centralManager.scanForPeripherals(withServices: nil, options: [CBCentralManagerRestoredStateScanOptionsKey: true])
+    }
+
+    func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
+        print("pereph \(peripheral)")
+    }
+
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -16,10 +26,14 @@ class DeviceVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var sensorDataSwitch: UISwitch!
     
     var device: HolyDevice!
+
+    var centralManager: CBCentralManager!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = device.name ?? "no name"
+
+        centralManager = CBCentralManager(delegate: self, queue: nil)
     }
 
     override func viewDidAppear(_ animated: Bool) {

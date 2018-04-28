@@ -36,10 +36,13 @@ extension CALayer {
   }()
 
   @objc dynamic func hero_add(anim: CAAnimation, forKey: String?) {
-    let copiedAnim = anim.copy() as! CAAnimation
-    copiedAnim.delegate = nil // having delegate resulted some weird animation behavior
-    CALayer.heroAddedAnimations?.append((self, forKey!, copiedAnim))
-    hero_add(anim: anim, forKey: forKey)
+    if CALayer.heroAddedAnimations != nil {
+      let copiedAnim = anim.copy() as! CAAnimation
+      copiedAnim.delegate = nil // having delegate resulted some weird animation behavior
+      CALayer.heroAddedAnimations!.append((self, forKey!, copiedAnim))
+    } else {
+      hero_add(anim: anim, forKey: forKey)
+    }
   }
 }
 
@@ -52,7 +55,11 @@ internal class HeroCoreAnimationViewContext: HeroAnimatorViewContext {
 
   // computed
   var contentLayer: CALayer? {
-    return snapshot.layer.sublayers?.get(0)
+    let firstLayer = snapshot.layer.sublayers?.get(0)
+    if firstLayer?.bounds == snapshot.bounds {
+      return firstLayer
+    }
+    return nil
   }
   var overlayLayer: CALayer?
 
@@ -185,28 +192,33 @@ internal class HeroCoreAnimationViewContext: HeroAnimatorViewContext {
       CALayer.heroAddedAnimations = nil
 
       for (layer, key, anim) in addedAnimations {
+        layer.removeAnimation(forKey: key)
         if #available(iOS 9.0, *), let anim = anim as? CASpringAnimation {
           anim.stiffness = stiffness
           anim.damping = damping
           self.addAnimation(anim, for: key, to: layer)
         } else {
-          self.animations.append((layer, key, anim))
+          self.addAnimation(anim, for: key, to: layer)
         }
       }
     } else {
       CATransaction.begin()
       CATransaction.setAnimationTimingFunction(timingFunction)
       UIView.animate(withDuration: duration, delay: delay, options: [], animations: animations, completion: nil)
-      CATransaction.commit()
       let addedAnimations = CALayer.heroAddedAnimations!
       CALayer.heroAddedAnimations = nil
-      self.animations.append(contentsOf: addedAnimations)
+      for (layer, key, anim) in addedAnimations {
+        layer.removeAnimation(forKey: key)
+        self.addAnimation(anim, for: key, to: layer)
+      }
+      CATransaction.commit()
     }
   }
 
   func addAnimation(_ animation: CAAnimation, for key: String, to layer: CALayer) {
-    animations.append((layer, key, animation))
-    layer.add(animation, forKey: key)
+    let heroAnimationKey = "hero.\(key)"
+    animations.append((layer, heroAnimationKey, animation))
+    layer.add(animation, forKey: heroAnimationKey)
   }
 
   // return the completion duration of the animation (duration + initial delay, not counting the beginTime)
@@ -336,6 +348,26 @@ internal class HeroCoreAnimationViewContext: HeroAnimatorViewContext {
     }
   }
 
+  override func changeTarget(state: HeroTargetState, isDestination: Bool) {
+    let targetState = viewState(targetState: state)
+    for (key, targetValue) in targetState {
+      let from: Any?, to: Any?
+      if let data = self.state[key] {
+        from = data.0
+        to = data.1
+      } else {
+        let data = currentValue(key: key)
+        from = data
+        to = data
+      }
+      if isDestination {
+        self.state[key] = (from, targetValue)
+      } else {
+        self.state[key] = (targetValue, to)
+      }
+    }
+  }
+
   override func resume(timePassed: TimeInterval, reverse: Bool) -> TimeInterval {
     for (key, (fromValue, toValue)) in state {
       let realToValue = !reverse ? toValue : fromValue
@@ -388,7 +420,7 @@ internal class HeroCoreAnimationViewContext: HeroAnimatorViewContext {
     let timeOffset = timePassed - targetState.delay
     for (layer, key, anim) in animations {
       anim.speed = 0
-      anim.timeOffset = timeOffset.clamp(0, anim.duration)
+      anim.timeOffset = timeOffset.clamp(0, anim.duration - 0.001)
       layer.removeAnimation(forKey: key)
       layer.add(anim, forKey: key)
     }
@@ -421,7 +453,6 @@ internal class HeroCoreAnimationViewContext: HeroAnimatorViewContext {
       let fromValue = !appearing ? appearingState : disappearedState
       state[key] = (fromValue, toValue)
     }
-
     return animate(delay: targetState.delay, duration: duration)
   }
 }

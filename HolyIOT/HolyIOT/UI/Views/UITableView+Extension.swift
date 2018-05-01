@@ -174,12 +174,9 @@ extension UITableView {
      let cell = tableView.cell(CustomCell.self, forIndexPath: indexPath)
      ```
      */
-    func cell<T>(_ type: T.Type = T.self, for indexPath: IndexPath) -> T where T: UITableViewCell{
+    func cell<T>(_ type: T.Type = T.self, for indexPath: IndexPath) -> T? where T: UITableViewCell {
         assertIsValid(indexPath: indexPath)
-        guard let cell = cellForRow(at: indexPath) as? T else {
-            fatalError("Cannot convert cell for row at \(indexPath) to type \(String(describing: T.self)) or the cell is not visible")
-        }
-        return cell
+        return cellForRow(at: indexPath) as? T
     }
     
     func isLoadedCellFor(indexPath: IndexPath) -> Bool {

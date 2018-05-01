@@ -24,6 +24,8 @@ class HolyDevice: Device {
     fileprivate var accelerometerRange: AccelerometerRange = AccelerometerRange.ACC_2G
     
     fileprivate var gyroscopeRange: GyroscopeRange = GyroscopeRange.GYRO_2000
+  
+    fileprivate var magnetometerRange: MagnetometerRange = MagnetometerRange.MAGNETO_2000
     
     weak var delegate: HolyDeviceProtocol?
     
@@ -49,7 +51,7 @@ class HolyDevice: Device {
             delegate?.holyDevice(self, didReceiveGyroData: sensor.fetchGyroscopeData(gyroscopeRange))
             break
         case .magnetometer:
-            delegate?.holyDevice(self, didReceiveMagnetoData: sensor.magnetometerData)
+            delegate?.holyDevice(self, didReceiveMagnetoData: sensor.fetchMagnetometerData(magnetometerRange))
             break
         case .barometer:
             delegate?.holyDevice(self, didReceiveBarometerValue: sensor.barometerData)

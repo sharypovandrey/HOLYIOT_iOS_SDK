@@ -24,6 +24,7 @@ class SensorCell: UITableViewCell {
     var type: SensorType!
     
     @IBAction func switched(_ sender: UISwitch) {
+//		if !sender.isOn { value.text = "" }
         delegate?.switched(self, type: type, isOn: sender.isOn)
     }
 }

@@ -39,5 +39,23 @@ extension UIApplicationDelegate {
         vc.device = device
         viewController.show(vc, sender: nil)
     }
+	
+	/**
+	Show device data chart
+	
+	- Parameters:
+	- viewController: viewController
+	- device: device
+	- sensor type: accelerometer, gyroscope or magnetometer
+	- range: range
+	*/
+	
+	func showDataChartInterface<C: UIViewController>(from viewController: C, device: HolyDevice, sensor type: DataChartType, range: Range) {
+		let vc = mainStoryboard.instantiate(DataChartViewController.self)
+		vc.device = device
+		vc.dataChartType = type
+		vc.range = range
+		viewController.show(vc, sender: nil)
+	}
 }
 

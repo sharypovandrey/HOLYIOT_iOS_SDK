@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		11943D8B20972C94002D0F51 /* DataChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11943D8A20972C94002D0F51 /* DataChartView.swift */; };
+		11943D8D20975526002D0F51 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11943D8C20975526002D0F51 /* UIColor+Extension.swift */; };
+		11943D8F20984150002D0F51 /* Range.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11943D8E20984150002D0F51 /* Range.swift */; };
 		852AD21E200DB68F00E985C9 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852AD21D200DB68F00E985C9 /* Device.swift */; };
 		852AD220200DCF5E00E985C9 /* ConnectableDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852AD21F200DCF5E00E985C9 /* ConnectableDevice.swift */; };
 		852AD222200DE8A100E985C9 /* ConnectionTimeoutProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852AD221200DE8A100E985C9 /* ConnectionTimeoutProtocol.swift */; };
@@ -36,7 +39,6 @@
 		85E8A6652004E6DE00F90B5B /* DeviceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E8A6642004E6DE00F90B5B /* DeviceCell.swift */; };
 		85E8A6672004ECD300F90B5B /* DeviceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E8A6662004ECD300F90B5B /* DeviceVC.swift */; };
 		85E8A6692004F2EC00F90B5B /* HolyDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E8A6682004F2EC00F90B5B /* HolyDevice.swift */; };
-		85E8A6732005C33000F90B5B /* Benchmark.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85E8A66D2005C32F00F90B5B /* Benchmark.framework */; };
 		85E8A6742005C33000F90B5B /* RxBlocking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85E8A66E2005C32F00F90B5B /* RxBlocking.framework */; };
 		85E8A6752005C33000F90B5B /* RxGesture.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85E8A66F2005C33000F90B5B /* RxGesture.framework */; };
 		85E8A67A2005C87100F90B5B /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85E8A6722005C33000F90B5B /* RxCocoa.framework */; };
@@ -50,6 +52,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		11943D8A20972C94002D0F51 /* DataChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataChartView.swift; sourceTree = "<group>"; };
+		11943D8C20975526002D0F51 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		11943D8E20984150002D0F51 /* Range.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Range.swift; sourceTree = "<group>"; };
 		852AD21D200DB68F00E985C9 /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		852AD21F200DCF5E00E985C9 /* ConnectableDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectableDevice.swift; sourceTree = "<group>"; };
 		852AD221200DE8A100E985C9 /* ConnectionTimeoutProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionTimeoutProtocol.swift; sourceTree = "<group>"; };
@@ -100,7 +105,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				85E8A6732005C33000F90B5B /* Benchmark.framework in Frameworks */,
 				85E8A6742005C33000F90B5B /* RxBlocking.framework in Frameworks */,
 				85E8A6752005C33000F90B5B /* RxGesture.framework in Frameworks */,
 				85E8A67A2005C87100F90B5B /* RxCocoa.framework in Frameworks */,
@@ -148,6 +152,7 @@
 				854D199820287FF200A925FF /* PowerCommand.swift */,
 				854D199A2028AD0200A925FF /* SFLData.swift */,
 				857F11E12029EBFF00DBA2EE /* AdvertisementData.swift */,
+				11943D8E20984150002D0F51 /* Range.swift */,
 			);
 			path = data;
 			sourceTree = "<group>";
@@ -156,6 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				854EC581202E043E002DFD2A /* UITableView+Extension.swift */,
+				11943D8A20972C94002D0F51 /* DataChartView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -205,6 +211,7 @@
 				85E8A65520049D6700F90B5B /* Assets.xcassets */,
 				85E8A65A20049D6700F90B5B /* Info.plist */,
 				85E8A68620064B3900F90B5B /* UIViewController+Router.swift */,
+				11943D8C20975526002D0F51 /* UIColor+Extension.swift */,
 			);
 			path = HolyIOT;
 			sourceTree = "<group>";
@@ -339,7 +346,6 @@
 			files = (
 			);
 			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/Benchmark.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/RxBlocking.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/RxSwift.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/RxCocoa.framework",
@@ -361,6 +367,7 @@
 				85E8A68920078A4700F90B5B /* Data+Extension.swift in Sources */,
 				852AD220200DCF5E00E985C9 /* ConnectableDevice.swift in Sources */,
 				854D19972028714600A925FF /* TemperatureData.swift in Sources */,
+				11943D8D20975526002D0F51 /* UIColor+Extension.swift in Sources */,
 				854D198F20286C1F00A925FF /* GyroscopeData.swift in Sources */,
 				85E8A68720064B3900F90B5B /* UIViewController+Router.swift in Sources */,
 				8556741B2084ECEA00529CBB /* SceneVC.swift in Sources */,
@@ -376,9 +383,11 @@
 				852AD222200DE8A100E985C9 /* ConnectionTimeoutProtocol.swift in Sources */,
 				85E8A64F20049D6700F90B5B /* AppDelegate.swift in Sources */,
 				855B8E3D2094E1070013BA9A /* DataChartViewController.swift in Sources */,
+				11943D8F20984150002D0F51 /* Range.swift in Sources */,
 				85E8A6852006455700F90B5B /* UIStoryboard+Router.swift in Sources */,
 				854EC58720303F59002DFD2A /* WeakRef.swift in Sources */,
 				85E8A6692004F2EC00F90B5B /* HolyDevice.swift in Sources */,
+				11943D8B20972C94002D0F51 /* DataChartView.swift in Sources */,
 				854EC582202E043E002DFD2A /* UITableView+Extension.swift in Sources */,
 				85E8A6652004E6DE00F90B5B /* DeviceCell.swift in Sources */,
 				85E8A6672004ECD300F90B5B /* DeviceVC.swift in Sources */,

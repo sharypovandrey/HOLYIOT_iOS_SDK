@@ -6,8 +6,6 @@
 //
 
 import UIKit
-import RxSwift
-import RxCocoa
 import CoreBluetooth
 
 enum SectionEnum: Int {
@@ -34,8 +32,6 @@ class DeviceListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     
     var devices: [String: HolyDevice] = [:]
     
-    let disposeBag = DisposeBag()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -45,15 +41,16 @@ class DeviceListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         
         HolyCentralManager.shared.delegate = self
         
-        scanSwitch.rx.isOn.bind { isOn in
-            if isOn {
-                HolyCentralManager.shared.startScan()
-            } else {
-                HolyCentralManager.shared.stopScan()
-            }
-        }.disposed(by: disposeBag)
     }
-
+	@IBAction func scanSwitchChanged(_ sender: Any) {
+		
+		if scanSwitch.isOn {
+			HolyCentralManager.shared.startScan()
+		} else {
+			HolyCentralManager.shared.stopScan()
+		}
+	}
+	
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

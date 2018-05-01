@@ -39,10 +39,6 @@
 		85E8A6652004E6DE00F90B5B /* DeviceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E8A6642004E6DE00F90B5B /* DeviceCell.swift */; };
 		85E8A6672004ECD300F90B5B /* DeviceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E8A6662004ECD300F90B5B /* DeviceVC.swift */; };
 		85E8A6692004F2EC00F90B5B /* HolyDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E8A6682004F2EC00F90B5B /* HolyDevice.swift */; };
-		85E8A6742005C33000F90B5B /* RxBlocking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85E8A66E2005C32F00F90B5B /* RxBlocking.framework */; };
-		85E8A6752005C33000F90B5B /* RxGesture.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85E8A66F2005C33000F90B5B /* RxGesture.framework */; };
-		85E8A67A2005C87100F90B5B /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85E8A6722005C33000F90B5B /* RxCocoa.framework */; };
-		85E8A67B2005C87100F90B5B /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85E8A6702005C33000F90B5B /* RxSwift.framework */; };
 		85E8A67D2005DBCE00F90B5B /* UIColor+Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E8A67C2005DBCE00F90B5B /* UIColor+Colors.swift */; };
 		85E8A6812006050700F90B5B /* CBPeripheral+Id.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E8A6802006050700F90B5B /* CBPeripheral+Id.swift */; };
 		85E8A6832006451000F90B5B /* AppDelegate+Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E8A6822006451000F90B5B /* AppDelegate+Router.swift */; };
@@ -105,10 +101,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				85E8A6742005C33000F90B5B /* RxBlocking.framework in Frameworks */,
-				85E8A6752005C33000F90B5B /* RxGesture.framework in Frameworks */,
-				85E8A67A2005C87100F90B5B /* RxCocoa.framework in Frameworks */,
-				85E8A67B2005C87100F90B5B /* RxSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -346,10 +338,6 @@
 			files = (
 			);
 			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/RxBlocking.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/RxSwift.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/RxCocoa.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/RxGesture.framework",
 			);
 			outputPaths = (
 			);

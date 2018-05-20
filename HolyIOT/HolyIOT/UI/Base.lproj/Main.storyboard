@@ -220,9 +220,21 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hY7-2X-hBv">
+                                <rect key="frame" x="227" y="167" width="132" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="132" id="Syz-9x-m7d"/>
+                                    <constraint firstAttribute="height" constant="45" id="owM-zf-5Df"/>
+                                </constraints>
+                                <state key="normal" title="Firmware update"/>
+                                <connections>
+                                    <action selector="updateFirmware:" destination="tkO-AX-NrO" eventType="touchUpInside" id="NHJ-gB-mqK"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="d4Q-LJ-rxQ" firstAttribute="trailing" secondItem="hY7-2X-hBv" secondAttribute="trailing" constant="16" id="0VM-kl-tq6"/>
                             <constraint firstItem="lIK-Zd-OcZ" firstAttribute="top" secondItem="er1-5u-5ek" secondAttribute="top" constant="220" id="1GR-Cs-noG"/>
                             <constraint firstItem="PAa-by-k2s" firstAttribute="leading" secondItem="d4Q-LJ-rxQ" secondAttribute="leading" constant="16" id="A7m-sG-pDQ"/>
                             <constraint firstItem="lIK-Zd-OcZ" firstAttribute="leading" secondItem="er1-5u-5ek" secondAttribute="leading" id="EdB-P4-oZJ"/>
@@ -234,6 +246,7 @@
                             <constraint firstAttribute="trailing" secondItem="lIK-Zd-OcZ" secondAttribute="trailing" id="TJ1-4J-qqC"/>
                             <constraint firstItem="Y8f-Je-6bt" firstAttribute="leading" secondItem="o3H-eO-GJe" secondAttribute="trailing" constant="8" id="ZVx-g6-bH0"/>
                             <constraint firstItem="PAa-by-k2s" firstAttribute="top" secondItem="o3H-eO-GJe" secondAttribute="bottom" constant="17" id="dRp-Xg-p8d"/>
+                            <constraint firstItem="lIK-Zd-OcZ" firstAttribute="top" secondItem="hY7-2X-hBv" secondAttribute="bottom" constant="8" id="eP6-Xi-bXS"/>
                             <constraint firstItem="o3H-eO-GJe" firstAttribute="leading" secondItem="d4Q-LJ-rxQ" secondAttribute="leading" constant="16" id="q1x-ra-zH6"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="d4Q-LJ-rxQ"/>
@@ -243,6 +256,7 @@
                         <outlet property="connectionSwitch" destination="o3H-eO-GJe" id="lFv-zZ-zYu"/>
                         <outlet property="sensorDataSwitch" destination="PAa-by-k2s" id="LU7-i7-TPz"/>
                         <outlet property="tableView" destination="lIK-Zd-OcZ" id="Ddl-xo-Qbc"/>
+                        <outlet property="updateFirmwareButton" destination="hY7-2X-hBv" id="yU7-V4-NiJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0vw-uv-f4W" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -351,6 +365,97 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5WX-nu-aFT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1535" y="824"/>
+        </scene>
+        <!--Firmware Update-->
+        <scene sceneID="qOp-46-Wg0">
+            <objects>
+                <viewController storyboardIdentifier="FirmwareUpdateViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="gl5-rg-vF4" customClass="FirmwareUpdateViewController" customModule="HolyIOT" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="mfj-Sd-Zti">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Q9c-zk-Gyh">
+                                <rect key="frame" x="66" y="622" width="243" height="5"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="5" id="vG1-n5-46T"/>
+                                </constraints>
+                            </progressView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ioj-Y3-Pgh">
+                                <rect key="frame" x="0.0" y="106" width="375" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="exs-vZ-MSB"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vfE-Gv-CG8">
+                                <rect key="frame" x="141.5" y="318" width="91" height="30"/>
+                                <state key="normal" title="Stop Process"/>
+                                <connections>
+                                    <action selector="stopProcessButtonTapped:" destination="gl5-rg-vF4" eventType="touchUpInside" id="ONz-E5-2c1"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Peripheral Name Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eKV-B3-J90">
+                                <rect key="frame" x="0.0" y="147" width="375" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="fkt-qv-9wC"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="pSv-ds-oPU">
+                                <rect key="frame" x="177" y="502" width="20" height="20"/>
+                            </activityIndicatorView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Upload Status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uEd-nU-1mg">
+                                <rect key="frame" x="0.0" y="188" width="375" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="6b3-DH-orG"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="eKV-B3-J90" firstAttribute="top" secondItem="ioj-Y3-Pgh" secondAttribute="bottom" constant="20" id="6qn-jX-8ep"/>
+                            <constraint firstItem="pSv-ds-oPU" firstAttribute="centerX" secondItem="mfj-Sd-Zti" secondAttribute="centerX" id="E3D-vO-Gls"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Q9c-zk-Gyh" secondAttribute="trailing" constant="50" id="Jtz-dz-8zD"/>
+                            <constraint firstItem="uEd-nU-1mg" firstAttribute="top" secondItem="eKV-B3-J90" secondAttribute="bottom" constant="20" id="JvN-Nh-fxr"/>
+                            <constraint firstItem="uEd-nU-1mg" firstAttribute="leading" secondItem="Ats-du-KGQ" secondAttribute="leading" id="Pho-fX-Yn3"/>
+                            <constraint firstItem="Ats-du-KGQ" firstAttribute="trailing" secondItem="eKV-B3-J90" secondAttribute="trailing" id="SvN-3S-vDU"/>
+                            <constraint firstItem="Q9c-zk-Gyh" firstAttribute="leading" secondItem="mfj-Sd-Zti" secondAttribute="leadingMargin" constant="50" id="WfS-gy-sym"/>
+                            <constraint firstItem="vfE-Gv-CG8" firstAttribute="centerX" secondItem="mfj-Sd-Zti" secondAttribute="centerX" id="Xuq-rM-HB8"/>
+                            <constraint firstItem="ioj-Y3-Pgh" firstAttribute="centerX" secondItem="mfj-Sd-Zti" secondAttribute="centerX" id="cPQ-E1-a8M"/>
+                            <constraint firstItem="eKV-B3-J90" firstAttribute="centerX" secondItem="mfj-Sd-Zti" secondAttribute="centerX" id="dw2-P4-rY2"/>
+                            <constraint firstItem="Q9c-zk-Gyh" firstAttribute="top" secondItem="pSv-ds-oPU" secondAttribute="bottom" constant="100" id="ekK-hy-lZQ"/>
+                            <constraint firstItem="Ats-du-KGQ" firstAttribute="trailing" secondItem="uEd-nU-1mg" secondAttribute="trailing" id="fSq-6u-pwS"/>
+                            <constraint firstItem="vfE-Gv-CG8" firstAttribute="centerY" secondItem="mfj-Sd-Zti" secondAttribute="centerY" id="htd-HS-mhd"/>
+                            <constraint firstItem="eKV-B3-J90" firstAttribute="leading" secondItem="Ats-du-KGQ" secondAttribute="leading" id="mXp-Fv-Ouc"/>
+                            <constraint firstItem="uEd-nU-1mg" firstAttribute="centerX" secondItem="mfj-Sd-Zti" secondAttribute="centerX" id="n4Q-SK-KqS"/>
+                            <constraint firstItem="ioj-Y3-Pgh" firstAttribute="leading" secondItem="Ats-du-KGQ" secondAttribute="leading" id="sVd-6P-J89"/>
+                            <constraint firstItem="Ats-du-KGQ" firstAttribute="trailing" secondItem="ioj-Y3-Pgh" secondAttribute="trailing" id="tzc-51-5n7"/>
+                            <constraint firstItem="Ats-du-KGQ" firstAttribute="bottom" secondItem="Q9c-zk-Gyh" secondAttribute="bottom" constant="40" id="xa3-J4-dnZ"/>
+                            <constraint firstItem="ioj-Y3-Pgh" firstAttribute="top" secondItem="Ats-du-KGQ" secondAttribute="top" constant="42" id="zt3-BJ-TR9"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Ats-du-KGQ"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Firmware Update" id="u9R-9K-rDv"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="dfuActivityIndicator" destination="pSv-ds-oPU" id="ELN-yy-k7s"/>
+                        <outlet property="dfuStatusLabel" destination="ioj-Y3-Pgh" id="uH5-Y2-MLb"/>
+                        <outlet property="dfuUploadProgressView" destination="Q9c-zk-Gyh" id="8kd-JG-gZw"/>
+                        <outlet property="dfuUploadStatus" destination="uEd-nU-1mg" id="XrO-Sb-PXO"/>
+                        <outlet property="peripheralNameLabel" destination="eKV-B3-J90" id="9dc-S3-cIq"/>
+                        <outlet property="stopProcessButton" destination="vfE-Gv-CG8" id="i3M-Oe-c4Z"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OkP-ZW-FJ6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2492" y="824"/>
         </scene>
     </scenes>
     <resources>

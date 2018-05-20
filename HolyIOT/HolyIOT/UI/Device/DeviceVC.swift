@@ -5,18 +5,9 @@
 //  Created by Nikita Vashchenko on 09.01.18.
 //
 
-import CoreBluetooth
 import UIKit
 
-class DeviceVC: UIViewController, UITableViewDelegate, UITableViewDataSource, CBCentralManagerDelegate {
-	func centralManagerDidUpdateState(_ central: CBCentralManager) {
-		print("centralManagerDidUpdateState \(central.state)")
-		centralManager.scanForPeripherals(withServices: nil, options: [CBCentralManagerRestoredStateScanOptionsKey: true])
-	}
-	
-	func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
-		print("pereph \(peripheral)")
-	}
+class DeviceVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 	
 	
 	@IBOutlet weak var tableView: UITableView!
@@ -25,25 +16,28 @@ class DeviceVC: UIViewController, UITableViewDelegate, UITableViewDataSource, CB
 	
 	@IBOutlet weak var sensorDataSwitch: UISwitch!
 	
-	var device: HolyDevice!
+	@IBOutlet weak var updateFirmwareButton: UIButton!
 	
-	var centralManager: CBCentralManager!
+	var device: HolyDevice!
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		title = device.name ?? "no name"
-		
-		centralManager = CBCentralManager(delegate: self, queue: nil)
+		title = device.name ?? "no name".localized
 	}
 	
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
+		updateFirmwareButton.isEnabled = device.state == .connected
 		connectionSwitch.setOn(device.state == .connected, animated: true)
 		if device.state != .connected {
 			sensorDataSwitch.setOn(false, animated: true)
 			tableView.switchOffAll()
 		}
 		device.delegate = self
+	}
+	
+	@IBAction func updateFirmware(_ sender: Any) {
+		router.showFirmwareUpdateInterface(from: self, device: device)
 	}
 	
 	@IBAction func connectionSwitched(_ sender: UISwitch) {
@@ -143,11 +137,13 @@ extension DeviceVC: SensorCellDelegate {
 extension DeviceVC: HolyDeviceProtocol {
 	func connected(_ holyDevice: HolyDevice) {
 		connectionSwitch.setOn(true, animated: true)
+		updateFirmwareButton.isEnabled = true
 	}
 	
 	func disconnected(_ holyDevice: HolyDevice) {
 		connectionSwitch.setOn(false, animated: true)
 		sensorDataSwitch.setOn(false, animated: true)
+		updateFirmwareButton.isEnabled = false
 		tableView.switchOffAll()
 	}
 	

@@ -59,9 +59,9 @@ class DeviceListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch SectionEnum(rawValue: section) {
         case .connected:
-            return "connected"
+            return "connected".localized
         default:
-            return "others"
+            return "others".localized
         }
     }
     
@@ -200,8 +200,7 @@ extension DeviceListVC: HolyCentralManagerProtocol {
         guard let previousDevice = devices[peripheral.id] else {return}
         
         let previousIndexPath  = indexPathForDevice(previousDevice)
-        
-//        devices[peripheral.id]!.peripheral = peripheral
+
         sort()
         
         let newIndexPath = indexPathForDevice(devices[peripheral.id]!)

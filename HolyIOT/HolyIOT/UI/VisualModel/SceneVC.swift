@@ -19,20 +19,29 @@ class SceneVC: UIViewController {
         super.viewDidLoad()
 
         let scene = SCNScene()
+		
         sceneView.scene = scene
 
         let camera = SCNCamera()
+		
         let cameraNode = SCNNode()
+		
         cameraNode.camera = camera
+		
         cameraNode.position = SCNVector3(x: 0.0, y: 0.0, z: 3.0)
 
         let light = SCNLight()
+		
         light.type = SCNLight.LightType.omni
+		
         let lightNode = SCNNode()
+		
         lightNode.light = light
+		
         lightNode.position = SCNVector3(x: 1.5, y: 1.5, z: 1.5)
 
         let cubeGeometry = SCNBox(width: 1.0, height: 0.2, length: 1.5, chamferRadius: 0.15)
+		
         cubeNode = SCNNode(geometry: cubeGeometry)
 
         scene.rootNode.addChildNode(lightNode)
@@ -86,19 +95,8 @@ extension SceneVC: HolyDeviceProtocol {
         let qz = data.z
         let qw = data.w
 
-        /*!
-         1. Pitch
-         2. Yaw
-         3. Roll
-
-         1. first roll
-         2. then yaw
-         3. then pitch
-         */
-
         let vector = toEulerAngle(q: SCNQuaternion(x: qx, y: qy, z: qz, w: qw))
 
-        //           pitch         yaw        roll
         print("new \(vector.x) \(vector.y) \(vector.z)")
 
         cubeNode.eulerAngles = SCNVector3(x: vector.y, y: -vector.z, z: vector.x)

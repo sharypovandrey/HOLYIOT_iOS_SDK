@@ -2,7 +2,7 @@
 //  DataChartView.swift
 //  HolyIOT
 //
-//  Created by Никита Ващенко on 30.04.2018.
+//  Created by Nikita Vashchenko on 30.04.2018.
 //
 
 import UIKit

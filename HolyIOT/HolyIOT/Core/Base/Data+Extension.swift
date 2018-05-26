@@ -8,7 +8,7 @@
 import Foundation
 
 extension Data {
-	
+
 	/**
 	Computed property convert the data to Int16
 	
@@ -19,15 +19,15 @@ extension Data {
 		guard byteArray.count == 2 else { return 0 }
 		return (Int16(byteArray[0]) | Int16(byteArray[1]) << 8)
 	}
-	
+
 	static func dataWithValue(value: Int16) -> Data {
 		var variableValue = value
 		return Data(buffer: UnsafeBufferPointer(start: &variableValue, count: 1))
 	}
 }
-	
+
 extension Data {
-	
+
 	/**
 	Computed property convert the data to Int8
 	
@@ -36,7 +36,7 @@ extension Data {
 	var int8Value: Int8 {
 		return Int8(bitPattern: self[0])
 	}
-	
+
     static func dataWithValue(value: Int8) -> Data {
         var variableValue = value
         return Data(buffer: UnsafeBufferPointer(start: &variableValue, count: 1))

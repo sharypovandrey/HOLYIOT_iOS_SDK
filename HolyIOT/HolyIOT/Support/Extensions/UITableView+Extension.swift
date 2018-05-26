@@ -8,8 +8,7 @@
 import UIKit
 
 extension UITableView {
-	
-	
+
 	/**
 	Dequeues a UITableViewCell for use in a UITableView
 	
@@ -25,7 +24,7 @@ extension UITableView {
         }
         return cell
     }
-	
+
 	/**
 	Returns the table cell at the specified index path
 	
@@ -38,7 +37,7 @@ extension UITableView {
     func cell<T>(_ type: T.Type = T.self, for indexPath: IndexPath) -> T? where T: UITableViewCell {
         return cellForRow(at: indexPath) as? T
     }
-	
+
 	/**
 	Check if Cell for the specified index path is loaded
 	

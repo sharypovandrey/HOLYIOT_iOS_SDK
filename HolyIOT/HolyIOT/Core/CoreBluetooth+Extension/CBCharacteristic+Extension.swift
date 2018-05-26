@@ -8,7 +8,7 @@
 import CoreBluetooth
 
 extension CBCharacteristic {
-	
+
 	var sensorType: SensorType {
 		return SensorType(rawValue: id)
 	}
@@ -42,7 +42,7 @@ extension CBCharacteristic {
 	var isPowerAnswer: Bool {
 		return id == HolyIOT.powerAnswerUUID
 	}
-	
+
 	open override var debugDescription: String {
 		let descrsString = descriptors?.map {"\n    \($0.debugDescription)"}.joined(separator: ", ") ?? "[]"
 		return """

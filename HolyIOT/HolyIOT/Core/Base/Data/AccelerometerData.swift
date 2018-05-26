@@ -8,13 +8,13 @@
 import Foundation
 import CoreBluetooth
 
-enum AccelerometerRange : Int, Range {
-	
+enum AccelerometerRange: Int, Range {
+
 	case ACC_2G = 3
 	case ACC_4G = 5
 	case ACC_8G = 8
 	case ACC_16G = 12
-	
+
 	var ratio: Float {
 		switch self {
 		case .ACC_2G:
@@ -27,60 +27,60 @@ enum AccelerometerRange : Int, Range {
 			return 16.0
 		}
 	}
-	
+
 	var unit: String {
 		return "G"
 	}
-	
+
 	var min: Float {
 		return -ratio
 	}
-	
+
 	var max: Float {
 		return ratio
 	}
 }
 
 struct AccelerometerData: CustomStringConvertible {
-	
+
 	let x: Float
 	let y: Float
 	let z: Float
-	
+
 	static let dafaultRange = AccelerometerRange.ACC_2G
-	
+
 	let range: AccelerometerRange
-	
+
 	var isEmpty: Bool {
 		return x == 0 && y == 0 && z == 0
 	}
-	
+
 	init() {
 		self.init(x: 0, y: 0, z: 0)
 	}
-	
+
 	init(x: Float, y: Float, z: Float) {
 		self.init(x: 0, y: 0, z: 0, range: AccelerometerData.dafaultRange)
 	}
-	
+
 	init(x: Float, y: Float, z: Float, range: AccelerometerRange) {
 		self.x = x
 		self.y = y
 		self.z = z
 		self.range = range
 	}
-	
+
 	init(rawX: Float, rawY: Float, rawZ: Float) {
 		self.init(rawX: rawX, rawY: rawY, rawZ: rawZ, range: .ACC_2G)
 	}
-	
+
 	init(rawX: Float, rawY: Float, rawZ: Float, range: AccelerometerRange) {
 		self.x = rawX * range.ratio
 		self.y = rawY * range.ratio
 		self.z = rawZ * range.ratio
 		self.range = range
 	}
-	
+
 	var description: String {
 		return String(format: "x: %.2f\(range.unit), " +
 			"y: %.2f\(range.unit), " +
@@ -91,13 +91,13 @@ struct AccelerometerData: CustomStringConvertible {
 }
 
 extension CBCharacteristic {
-	
+
 	fileprivate var divider: Float {
 		return 32768.0
 	}
-	
+
 	func fetchAccelerometerData(_ range: AccelerometerRange = AccelerometerRange.ACC_2G) -> AccelerometerData {
-		
+
 		if let value = value {
 			let byteArray = [UInt8](value)
 			guard byteArray.count == 9 else {return AccelerometerData()}
@@ -110,4 +110,3 @@ extension CBCharacteristic {
 		}
 	}
 }
-

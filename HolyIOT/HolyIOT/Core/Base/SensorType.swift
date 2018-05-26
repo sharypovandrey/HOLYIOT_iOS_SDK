@@ -22,7 +22,7 @@ enum SensorType: String {
 	case power
 	case powerAnswer
 	case unknown
-	
+
 	init(rawValue: String) {
 		switch rawValue {
 		case HolyIOT.accelerometerUUID:

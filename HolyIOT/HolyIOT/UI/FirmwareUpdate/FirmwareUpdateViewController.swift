@@ -10,42 +10,42 @@ import iOSDFULibrary
 import UIKit
 
 class FirmwareUpdateViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDelegate {
-	
-	//MARK: - Class Properties
+
+	// MARK: - Class Properties
 	fileprivate var dfuPeripheral: CBPeripheral!
-	
+
 	fileprivate var dfuController: DFUServiceController?
-	
-	fileprivate var selectedFirmware : DFUFirmware?
-	
+
+	fileprivate var selectedFirmware: DFUFirmware?
+
 	var device: HolyDevice!
-	
+
 	@IBOutlet weak var dfuActivityIndicator: UIActivityIndicatorView!
-	
+
 	@IBOutlet weak var dfuStatusLabel: UILabel!
-	
+
 	@IBOutlet weak var peripheralNameLabel: UILabel!
-	
+
 	@IBOutlet weak var dfuUploadProgressView: UIProgressView!
-	
+
 	@IBOutlet weak var dfuUploadStatus: UILabel!
-	
+
 	@IBOutlet weak var stopProcessButton: UIButton!
-	
+
 	var centralManager: CBCentralManager!
-	
+
     override func viewDidLoad() {
         super.viewDidLoad()
-		
+
 		device.updateFirmware()
-		
+
 		centralManager = CBCentralManager(delegate: self, queue: nil)
     }
-	
+
 	@IBAction func updateButtonTapped(_ sender: Any) {
 	}
-	
-	//MARK: - View Actions
+
+	// MARK: - View Actions
 	@IBAction func stopProcessButtonTapped(_ sender: AnyObject) {
 		guard dfuController != nil else {
 			print("No DFU peripheral was set")
@@ -56,10 +56,10 @@ class FirmwareUpdateViewController: UIViewController, CBCentralManagerDelegate, 
 			dfuController!.restart()
 			return
 		}
-		
+
 		print("Action: DFU paused")
 		dfuController!.pause()
-		
+
 		showStopProcessWarning({
 			print("Action: DFU aborted")
 			_ = self.dfuController!.abort()
@@ -68,21 +68,21 @@ class FirmwareUpdateViewController: UIViewController, CBCentralManagerDelegate, 
 			self.dfuController!.resume()
 		}
 	}
-	
+
 	func setCentralManager(_ centralManager: CBCentralManager) {
 		self.centralManager = centralManager
 	}
-	
+
 	func setTargetPeripheral(_ targetPeripheral: CBPeripheral) {
 		self.dfuPeripheral = targetPeripheral
 	}
-	
+
 	func startDFUProcess() {
 		guard dfuPeripheral != nil else {
 			print("No DFU peripheral was set")
 			return
 		}
-		
+
 		let dfuInitiator = DFUServiceInitiator(centralManager: centralManager!, target: dfuPeripheral!)
 		dfuInitiator.delegate = self
 		dfuInitiator.progressDelegate = self
@@ -94,14 +94,14 @@ class FirmwareUpdateViewController: UIViewController, CBCentralManagerDelegate, 
 		if #available(iOS 11.0, macOS 10.13, *) {
 			dfuInitiator.packetReceiptNotificationParameter = 0
 		}
-		
+
 		// This enables the experimental Buttonless DFU feature from SDK 12.
 		// Please, read the field documentation before use.
 		dfuInitiator.enableUnsafeExperimentalButtonlessServiceInSecureDfu = true
-		
+
 		dfuController = dfuInitiator.with(firmware: selectedFirmware!).start()
 	}
-	
+
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		dfuActivityIndicator.startAnimating()
@@ -109,30 +109,30 @@ class FirmwareUpdateViewController: UIViewController, CBCentralManagerDelegate, 
 		dfuUploadStatus.text = ""
 		dfuStatusLabel.text  = ""
 	}
-	
+
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
 	}
-	
+
 	override func viewDidDisappear(_ animated: Bool) {
 		super.viewDidDisappear(animated)
 		_ = dfuController?.abort()
 		dfuController = nil
 	}
-	
-	//MARK: - CBCentralManagerDelegate
-	
+
+	// MARK: - CBCentralManagerDelegate
+
 	func centralManagerDidUpdateState(_ central: CBCentralManager) {
 		print("CM did update state: \(central.state.rawValue)")
 		centralManager.scanForPeripherals(withServices: nil, options: [CBCentralManagerRestoredStateScanOptionsKey: true])
 	}
-	
+
 	func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
 		let name = peripheral.name ?? "Unknown"
 		print("Connected to peripheral: \(name)")
 		peripheral.delegate = self
 		peripheral.discoverServices(nil)
-		
+
 		if dfuPeripheral == peripheral {
 			peripheralNameLabel.text = "Flashing \(dfuPeripheral.name ?? "no name")..."
 			let fileUrl = Bundle.main.url(forResource: "hrm_legacy_dfu_with_sd_s132_2_0_0", withExtension: "zip")!
@@ -141,16 +141,16 @@ class FirmwareUpdateViewController: UIViewController, CBCentralManagerDelegate, 
 
 		}
 	}
-	
-	func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
+
+	func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String: Any], rssi RSSI: NSNumber) {
 		print("pereph \(peripheral)")
 		if peripheral.name == "DfuTarg" {
 			dfuPeripheral = peripheral
 			centralManager.connect(dfuPeripheral!)
-			
+
 		}
 	}
-	
+
 	func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
 		let name = peripheral.name ?? "Unknown"
 		print("Disconnected from peripheral: \(name)")
@@ -158,9 +158,9 @@ class FirmwareUpdateViewController: UIViewController, CBCentralManagerDelegate, 
 }
 
 extension FirmwareUpdateViewController: DFUServiceDelegate, DFUProgressDelegate, LoggerDelegate {
-	
-	//MARK: - DFUServiceDelegate
-	
+
+	// MARK: - DFUServiceDelegate
+
 	func dfuStateDidChange(to state: DFUState) {
 		switch state {
 		case .completed, .disconnecting:
@@ -175,36 +175,36 @@ extension FirmwareUpdateViewController: DFUServiceDelegate, DFUProgressDelegate,
 		default:
 			self.stopProcessButton.isEnabled = true
 		}
-		
+
 		dfuStatusLabel.text = state.description()
 		print("Changed state to: \(state.description())")
-		
+
 		// Forget the controller when DFU is done
 		if state == .completed {
 			dfuController = nil
 		}
 	}
-	
+
 	func dfuError(_ error: DFUError, didOccurWithMessage message: String) {
 		dfuStatusLabel.text = "Error \(error.rawValue): \(message)"
 		dfuActivityIndicator.stopAnimating()
 		dfuUploadProgressView.setProgress(0, animated: true)
 		print("Error \(error.rawValue): \(message)")
-		
+
 		// Forget the controller when DFU finished with an error
 		dfuController = nil
 	}
-	
-	//MARK: - DFUProgressDelegate
-	
+
+	// MARK: - DFUProgressDelegate
+
 	func dfuProgressDidChange(for part: Int, outOf totalParts: Int, to progress: Int, currentSpeedBytesPerSecond: Double, avgSpeedBytesPerSecond: Double) {
 		dfuUploadProgressView.setProgress(Float(progress)/100.0, animated: true)
 		dfuUploadStatus.text = String(format: "Part: %d/%d\nSpeed: %.1f KB/s\nAverage Speed: %.1f KB/s",
 									  part, totalParts, currentSpeedBytesPerSecond/1024, avgSpeedBytesPerSecond/1024)
 	}
-	
-	//MARK: - LoggerDelegate
-	
+
+	// MARK: - LoggerDelegate
+
 	func logWith(_ level: LogLevel, message: String) {
 		print("\(level.name()): \(message)")
 	}

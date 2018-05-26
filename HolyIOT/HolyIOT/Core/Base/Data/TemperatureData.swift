@@ -8,13 +8,12 @@
 import Foundation
 import CoreBluetooth
 
-
 extension CBCharacteristic {
 
   fileprivate var divider: Float {
     return 100.0
   }
-    
+
     var temperatureData: Float {
         if let value = value {
             let byteArray = [UInt8](value)

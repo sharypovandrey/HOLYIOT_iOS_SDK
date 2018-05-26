@@ -8,7 +8,7 @@
 import Foundation
 
 extension String {
-	
+
 	/**
 	Localization
 	

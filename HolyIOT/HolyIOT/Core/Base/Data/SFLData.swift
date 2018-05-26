@@ -8,32 +8,31 @@
 import Foundation
 import CoreBluetooth
 
-
 struct SFLData: CustomStringConvertible {
-    
+
     let x: Float
     let y: Float
     let z: Float
     let w: Float
-    
+
     var isEmpty: Bool {
         return x == 0 && y == 0 && z == 0 && w == 0
     }
-    
+
     init() {
         x = 0
         y = 0
         z = 0
         w = 0
     }
-    
+
     init(x: Float, y: Float, z: Float, w: Float) {
         self.x = x
         self.y = y
         self.z = z
         self.w = w
     }
-    
+
     var description: String {
         return "x:\(x), y:\(y), z:\(z), w\(w)"
     }
@@ -44,7 +43,7 @@ extension CBCharacteristic {
     fileprivate var divider: Float {
         return 32768.0
     }
-    
+
     var sflData: SFLData {
         if let value = value {
             let byteArray = [UInt8](value)

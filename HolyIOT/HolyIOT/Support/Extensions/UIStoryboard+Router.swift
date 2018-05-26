@@ -8,7 +8,7 @@
 import UIKit
 
 extension UIStoryboard {
-	
+
 	/**
 	instantiate a UIViewController from the UIStoryboard
 	
@@ -19,7 +19,7 @@ extension UIStoryboard {
 	- Returns: instantiated view controller of given type
 	*/
     public func instantiate<T: UIViewController>(_ type: T.Type = T.self, withIdentifier identifier: String = String(describing: T.self)) -> T {
-        guard let vc = instantiateViewController(withIdentifier: identifier) as? T else  {
+        guard let vc = instantiateViewController(withIdentifier: identifier) as? T else {
             fatalError("Unknown view controller type (\(T.self)) for identifier: \(identifier)")
         }
         return vc

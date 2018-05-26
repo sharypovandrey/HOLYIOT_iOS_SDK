@@ -8,14 +8,14 @@
 import Foundation
 import CoreBluetooth
 
-enum MagnetometerRange : Int, Range {
-	
+enum MagnetometerRange: Int, Range {
+
 	case MAGNETO_2000 = 0
 	case MAGNETO_1000 = 1
 	case MAGNETO_500 = 2
 	case MAGNETO_250 = 3
 	case MAGNETO_125 = 4
-	
+
 	var ratio: Float {
 		switch self {
 		case .MAGNETO_2000:
@@ -30,48 +30,48 @@ enum MagnetometerRange : Int, Range {
 			return 125.0
 		}
 	}
-	
+
 	var unit: String {
 		return "uT"
 	}
-	
+
 	var min: Float {
 		return -ratio
 	}
-	
+
 	var max: Float {
 		return ratio
 	}
 }
 
 struct MagnetometerData: CustomStringConvertible {
-	
+
 	let x: Float
 	let y: Float
 	let z: Float
-	
+
 	static let defaultRange = MagnetometerRange.MAGNETO_2000
-	
+
 	let range: MagnetometerRange
-	
+
 	var isEmpty: Bool {
 		return x == 0 && y == 0 && z == 0
 	}
-	
+
 	init() {
 		x = 0
 		y = 0
 		z = 0
 		range = MagnetometerData.defaultRange
 	}
-	
+
 	init(x: Float, y: Float, z: Float, range: MagnetometerRange) {
 		self.x = x
 		self.y = y
 		self.z = z
 		self.range = range
 	}
-	
+
 	var description: String {
 		return "x:\(Int(x))\(range.unit), " +
 			"y:\(Int(y))\(range.unit), " +
@@ -82,7 +82,7 @@ struct MagnetometerData: CustomStringConvertible {
 }
 
 extension CBCharacteristic {
-	
+
 	func fetchMagnetometerData(_ range: MagnetometerRange = MagnetometerData.defaultRange) -> MagnetometerData {
 		if let value = value {
 			let byteArray = [UInt8](value)

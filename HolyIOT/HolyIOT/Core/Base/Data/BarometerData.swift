@@ -8,9 +8,8 @@
 import Foundation
 import CoreBluetooth
 
-
 extension CBCharacteristic {
-    
+
     var barometerData: Int {
         if let value = value {
             let byteArray = [UInt8](value)

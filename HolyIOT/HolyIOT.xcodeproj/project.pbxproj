@@ -93,6 +93,7 @@
 		8556741A2084ECEA00529CBB /* SceneVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneVC.swift; sourceTree = "<group>"; };
 		855B8E3C2094E1070013BA9A /* DataChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataChartViewController.swift; sourceTree = "<group>"; };
 		857F11E12029EBFF00DBA2EE /* AdvertisementData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvertisementData.swift; sourceTree = "<group>"; };
+		85C2085320C83A7900E948BC /* HolyIOT.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HolyIOT.entitlements; sourceTree = "<group>"; };
 		85E8A64B20049D6700F90B5B /* HolyIOT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HolyIOT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		85E8A64E20049D6700F90B5B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		85E8A65020049D6700F90B5B /* DeviceListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceListVC.swift; sourceTree = "<group>"; };
@@ -260,6 +261,7 @@
 		85E8A64D20049D6700F90B5B /* HolyIOT */ = {
 			isa = PBXGroup;
 			children = (
+				85C2085320C83A7900E948BC /* HolyIOT.entitlements */,
 				1132AAA220AFEEF1007DDA7E /* Support */,
 				1132AA9D20AF350B007DDA7E /* Resources */,
 				85E8A6612004BA5D00F90B5B /* UI */,
@@ -356,6 +358,11 @@
 					85E8A64A20049D6700F90B5B = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -604,6 +611,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = HolyIOT/HolyIOT.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GB97ZCSP64;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -624,6 +632,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = HolyIOT/HolyIOT.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GB97ZCSP64;
 				FRAMEWORK_SEARCH_PATHS = (

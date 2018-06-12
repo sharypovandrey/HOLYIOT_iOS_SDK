@@ -69,7 +69,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		11160FE120CF5E94001B187B /* HolyIOT.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HolyIOT.entitlements; sourceTree = "<group>"; };
+		1114D0AD20CF79640031C638 /* HolyIOT.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HolyIOT.entitlements; sourceTree = "<group>"; };
 		1128013420AFFEB7002C5701 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		1128013520AFFEB8002C5701 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		1128013820B006D0002C5701 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
@@ -271,7 +271,7 @@
 		85E8A64D20049D6700F90B5B /* HolyIOT */ = {
 			isa = PBXGroup;
 			children = (
-				11160FE120CF5E94001B187B /* HolyIOT.entitlements */,
+				1114D0AD20CF79640031C638 /* HolyIOT.entitlements */,
 				1132AAA220AFEEF1007DDA7E /* Support */,
 				1132AA9D20AF350B007DDA7E /* Resources */,
 				85E8A6612004BA5D00F90B5B /* UI */,

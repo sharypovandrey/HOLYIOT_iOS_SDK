@@ -38,9 +38,19 @@ class DeviceListVC: UIViewController {
 
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 44
-
-        HolyCentralManager.shared.delegate = self
+		
+		HolyCentralManager.shared.delegate = self
     }
+	
+	func reset() {
+		HolyCentralManager.shared.stopScan()
+		scanSwitch.setOn(false, animated: true)
+		devices = [:]
+		connectedIds = []
+		otherIds = []
+		tableView.reloadData()
+	}
+	
 	@IBAction func scanSwitchChanged(_ sender: Any) {
 		if scanSwitch.isOn {
 			HolyCentralManager.shared.startScan()

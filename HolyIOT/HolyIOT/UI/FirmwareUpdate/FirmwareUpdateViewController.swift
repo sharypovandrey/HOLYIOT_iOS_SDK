@@ -16,7 +16,16 @@ class FirmwareUpdateViewController: UIViewController, CBCentralManagerDelegate, 
 
 	fileprivate var dfuController: DFUServiceController?
 
-	fileprivate var selectedFirmware: DFUFirmware?
+	fileprivate var selectedFirmware: DFUFirmware? {
+		didSet {
+			if selectedFirmware != nil {
+				stopProcessButton.isHidden = false
+				stopProcessButton.setTitle("Start process", for: .normal)
+			} else {
+				stopProcessButton.isHidden = true
+			}
+		}
+	}
 
 	var device: HolyDevice!
 
@@ -30,6 +39,8 @@ class FirmwareUpdateViewController: UIViewController, CBCentralManagerDelegate, 
 
 	@IBOutlet weak var dfuUploadStatus: UILabel!
 
+	@IBOutlet weak var findFileOnPasteboardButton: UIButton!
+	
 	@IBOutlet weak var stopProcessButton: UIButton!
 
 	var centralManager: CBCentralManager!
@@ -37,35 +48,48 @@ class FirmwareUpdateViewController: UIViewController, CBCentralManagerDelegate, 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-		device.updateFirmware()
-
 		centralManager = CBCentralManager(delegate: self, queue: nil)
     }
 
-	@IBAction func updateButtonTapped(_ sender: Any) {
-	}
-
 	// MARK: - View Actions
+	@IBAction func findFileButtonTapped(_ sender: Any) {
+		
+		guard selectedFirmware == nil else { return }
+		
+		if let data = UIPasteboard.general.data(forPasteboardType: "public.zip-archive"),
+			let firmware = DFUFirmware(zipFile: data),
+			firmware.valid {
+			selectedFirmware = firmware
+			findFileOnPasteboardButton.setTitle("File finded successfully", for: .normal)
+		} else {
+			print("no data")
+			findFileOnPasteboardButton.setTitle("Find firmware file on pasteboard", for: .normal)
+			showNoFirmwareFileWarning()
+		}
+	}
+	
 	@IBAction func stopProcessButtonTapped(_ sender: AnyObject) {
-		guard dfuController != nil else {
+		guard let dfuController = dfuController else {
 			print("No DFU peripheral was set")
+			if selectedFirmware != nil {
+				device.updateFirmware()
+			}
 			return
 		}
-		guard !dfuController!.aborted else {
-			stopProcessButton.setTitle("Stop process", for: .normal)
-			dfuController!.restart()
-			return
-		}
-
-		print("Action: DFU paused")
-		dfuController!.pause()
-
-		showStopProcessWarning({
-			print("Action: DFU aborted")
-			_ = self.dfuController!.abort()
-		}) {
-			print("Action: DFU resumed")
-			self.dfuController!.resume()
+		
+		if dfuController.aborted {
+			dfuController.restart()
+		} else {
+			print("Action: DFU paused")
+			dfuController.pause()
+			
+			showStopProcessWarning({
+				print("Action: DFU aborted")
+				_ = self.dfuController?.abort()
+			}) {
+				print("Action: DFU resumed")
+				self.dfuController?.resume()
+			}
 		}
 	}
 
@@ -135,8 +159,6 @@ class FirmwareUpdateViewController: UIViewController, CBCentralManagerDelegate, 
 
 		if dfuPeripheral == peripheral {
 			peripheralNameLabel.text = "Flashing \(dfuPeripheral.name ?? "no name")..."
-			let fileUrl = Bundle.main.url(forResource: "hrm_legacy_dfu_with_sd_s132_2_0_0", withExtension: "zip")!
-			selectedFirmware = DFUFirmware(urlToZipFile: fileUrl)
 			startDFUProcess()
 
 		}
@@ -166,13 +188,15 @@ extension FirmwareUpdateViewController: DFUServiceDelegate, DFUProgressDelegate,
 		case .completed, .disconnecting:
 			self.dfuActivityIndicator.stopAnimating()
 			self.dfuUploadProgressView.setProgress(0, animated: false)
+			self.stopProcessButton.setTitle("Start process", for: .normal)
 			self.stopProcessButton.isEnabled = false
 		case .aborted:
 			self.dfuActivityIndicator.stopAnimating()
 			self.dfuUploadProgressView.setProgress(0, animated: true)
-			self.stopProcessButton.setTitle("Restart", for: .normal)
+			self.stopProcessButton.setTitle("Restart process", for: .normal)
 			self.stopProcessButton.isEnabled = true
 		default:
+			stopProcessButton.setTitle("Stop process", for: .normal)
 			self.stopProcessButton.isEnabled = true
 		}
 
@@ -182,6 +206,16 @@ extension FirmwareUpdateViewController: DFUServiceDelegate, DFUProgressDelegate,
 		// Forget the controller when DFU is done
 		if state == .completed {
 			dfuController = nil
+			showSuccess {
+				if let controllers = self.navigationController?.viewControllers {
+					for controller in controllers {
+						if let controller = controller as? DeviceListVC {
+							controller.reset()
+						}
+					}
+				}
+				self.navigationController?.popToRootViewController(animated: true)
+			}
 		}
 	}
 

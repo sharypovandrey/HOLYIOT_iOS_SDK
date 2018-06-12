@@ -11,6 +11,7 @@
 "done" = "Done";
 "warning" = "Warning";
 "ask_stop_process" = "Are you sure you want to stop the process?";
+"no_firmware_file" = "There is no firmware update zip file in the pasteboard. Please copy file and try again";
 "abort" = "Abort";
 "cancel" = "Cancel";
 "no name" = "No name";

@@ -97,8 +97,6 @@ extension SceneVC: HolyDeviceProtocol {
 
         let vector = toEulerAngle(q: SCNQuaternion(x: qx, y: qy, z: qz, w: qw))
 
-        print("new \(vector.x) \(vector.y) \(vector.z)")
-
         cubeNode.eulerAngles = SCNVector3(x: vector.y, y: -vector.z, z: vector.x)
     }
 

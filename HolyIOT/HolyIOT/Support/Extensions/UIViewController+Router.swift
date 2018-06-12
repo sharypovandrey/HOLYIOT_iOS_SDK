@@ -30,7 +30,7 @@ extension UIViewController {
     }
 
 	/**
-	Swow stop updating process warning
+	Show stop updating process warning
 	
 	- Parameters:
 	- onAbort: EmptyBlock complition on user selected abort
@@ -45,6 +45,36 @@ extension UIViewController {
 		alertView.addAction(UIAlertAction(title: "cancel".localized, style: .cancel) {
 			(_) in
 			onCancel()
+		})
+		present(alertView, animated: true)
+	}
+	
+	/**
+	Show no firmware file zip in pasteboard
+	
+	- Parameters:
+	- onDone: EmptyBlock complition on user selected done
+	*/
+	func showNoFirmwareFileWarning(_ onDone: EmptyBlock? = nil) {
+		let alertView = UIAlertController(title: "warning".localized, message: "no_firmware_file".localized, preferredStyle: .alert)
+		alertView.addAction(UIAlertAction(title: "done".localized, style: .cancel) {
+			(_) in
+			onDone?()
+		})
+		present(alertView, animated: true)
+	}
+	
+	/**
+	Show on updated
+	
+	- Parameters:
+	- onDone: EmptyBlock complition on user selected done
+	*/
+	func showSuccess(_ onDone: EmptyBlock? = nil) {
+		let alertView = UIAlertController(title: "Success", message: nil, preferredStyle: .alert)
+		alertView.addAction(UIAlertAction(title: "done".localized, style: .cancel) {
+			(_) in
+			onDone?()
 		})
 		present(alertView, animated: true)
 	}

@@ -20,7 +20,6 @@
 		1132AA9620AF19C9007DDA7E /* FirmwareUpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1132AA9420AF19C9007DDA7E /* FirmwareUpdateViewController.swift */; };
 		1132AA9A20AF2BA8007DDA7E /* Zip.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1132AA9820AF2BA7007DDA7E /* Zip.framework */; };
 		1132AA9B20AF2BA8007DDA7E /* iOSDFULibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1132AA9920AF2BA8007DDA7E /* iOSDFULibrary.framework */; };
-		1132AAA020AF3523007DDA7E /* hrm_legacy_dfu_with_sd_s132_2_0_0.zip in Resources */ = {isa = PBXBuildFile; fileRef = 1132AA9E20AF3523007DDA7E /* hrm_legacy_dfu_with_sd_s132_2_0_0.zip */; };
 		11943D8B20972C94002D0F51 /* DataChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11943D8A20972C94002D0F51 /* DataChartView.swift */; };
 		11943D8D20975526002D0F51 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11943D8C20975526002D0F51 /* UIColor+Extension.swift */; };
 		11943D8F20984150002D0F51 /* Range.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11943D8E20984150002D0F51 /* Range.swift */; };
@@ -56,7 +55,21 @@
 		85E8A68920078A4700F90B5B /* Data+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E8A68820078A4700F90B5B /* Data+Extension.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		11F873A920CED27A00813449 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		1114D0AD20CF79640031C638 /* HolyIOT.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HolyIOT.entitlements; sourceTree = "<group>"; };
 		1128013420AFFEB7002C5701 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		1128013520AFFEB8002C5701 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		1128013820B006D0002C5701 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
@@ -73,7 +86,6 @@
 		1132AA9420AF19C9007DDA7E /* FirmwareUpdateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirmwareUpdateViewController.swift; sourceTree = "<group>"; };
 		1132AA9820AF2BA7007DDA7E /* Zip.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Zip.framework; path = Carthage/Build/iOS/Zip.framework; sourceTree = "<group>"; };
 		1132AA9920AF2BA8007DDA7E /* iOSDFULibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iOSDFULibrary.framework; path = Carthage/Build/iOS/iOSDFULibrary.framework; sourceTree = "<group>"; };
-		1132AA9E20AF3523007DDA7E /* hrm_legacy_dfu_with_sd_s132_2_0_0.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = hrm_legacy_dfu_with_sd_s132_2_0_0.zip; sourceTree = "<group>"; };
 		11943D8A20972C94002D0F51 /* DataChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataChartView.swift; sourceTree = "<group>"; };
 		11943D8C20975526002D0F51 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		11943D8E20984150002D0F51 /* Range.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Range.swift; sourceTree = "<group>"; };
@@ -148,7 +160,6 @@
 		1132AA9D20AF350B007DDA7E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				1132AA9E20AF3523007DDA7E /* hrm_legacy_dfu_with_sd_s132_2_0_0.zip */,
 				1128013C20B00803002C5701 /* Localizable.strings */,
 			);
 			path = Resources;
@@ -260,6 +271,7 @@
 		85E8A64D20049D6700F90B5B /* HolyIOT */ = {
 			isa = PBXGroup;
 			children = (
+				1114D0AD20CF79640031C638 /* HolyIOT.entitlements */,
 				1132AAA220AFEEF1007DDA7E /* Support */,
 				1132AA9D20AF350B007DDA7E /* Resources */,
 				85E8A6612004BA5D00F90B5B /* UI */,
@@ -334,6 +346,7 @@
 				85E8A64820049D6700F90B5B /* Frameworks */,
 				85E8A64920049D6700F90B5B /* Resources */,
 				1132AA9C20AF2BFB007DDA7E /* ShellScript */,
+				11F873A920CED27A00813449 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
@@ -350,12 +363,17 @@
 		85E8A64320049D6700F90B5B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0920;
+				LastSwiftUpdateCheck = 0940;
 				LastUpgradeCheck = 0920;
 				TargetAttributes = {
 					85E8A64A20049D6700F90B5B = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -384,7 +402,6 @@
 			files = (
 				1128013A20B00803002C5701 /* Localizable.strings in Resources */,
 				85E8A65920049D6700F90B5B /* LaunchScreen.storyboard in Resources */,
-				1132AAA020AF3523007DDA7E /* hrm_legacy_dfu_with_sd_s132_2_0_0.zip in Resources */,
 				85E8A65620049D6700F90B5B /* Assets.xcassets in Resources */,
 				85E8A65420049D6700F90B5B /* Main.storyboard in Resources */,
 			);

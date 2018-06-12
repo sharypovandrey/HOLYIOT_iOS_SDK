@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="QLn-ES-xHM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="QLn-ES-xHM">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -381,7 +381,7 @@
                                 </constraints>
                             </progressView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ioj-Y3-Pgh">
-                                <rect key="frame" x="0.0" y="106" width="375" height="21"/>
+                                <rect key="frame" x="0.0" y="124" width="375" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="exs-vZ-MSB"/>
                                 </constraints>
@@ -397,7 +397,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Peripheral Name Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eKV-B3-J90">
-                                <rect key="frame" x="0.0" y="147" width="375" height="21"/>
+                                <rect key="frame" x="0.0" y="165" width="375" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="fkt-qv-9wC"/>
                                 </constraints>
@@ -405,11 +405,11 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="pSv-ds-oPU">
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="pSv-ds-oPU">
                                 <rect key="frame" x="177" y="502" width="20" height="20"/>
                             </activityIndicatorView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Upload Status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uEd-nU-1mg">
-                                <rect key="frame" x="0.0" y="188" width="375" height="21"/>
+                                <rect key="frame" x="0.0" y="206" width="375" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="6b3-DH-orG"/>
                                 </constraints>
@@ -417,9 +417,20 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0sg-cO-6t6">
+                                <rect key="frame" x="16" y="77" width="343" height="39"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="39" id="TZB-2k-poP"/>
+                                </constraints>
+                                <state key="normal" title="Find file on pasteboard"/>
+                                <connections>
+                                    <action selector="findFileButtonTapped:" destination="gl5-rg-vF4" eventType="touchUpInside" id="reQ-QI-SYj"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="Ats-du-KGQ" firstAttribute="trailing" secondItem="0sg-cO-6t6" secondAttribute="trailing" constant="16" id="2m4-e8-alE"/>
                             <constraint firstItem="eKV-B3-J90" firstAttribute="top" secondItem="ioj-Y3-Pgh" secondAttribute="bottom" constant="20" id="6qn-jX-8ep"/>
                             <constraint firstItem="pSv-ds-oPU" firstAttribute="centerX" secondItem="mfj-Sd-Zti" secondAttribute="centerX" id="E3D-vO-Gls"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Q9c-zk-Gyh" secondAttribute="trailing" constant="50" id="Jtz-dz-8zD"/>
@@ -429,16 +440,18 @@
                             <constraint firstItem="Q9c-zk-Gyh" firstAttribute="leading" secondItem="mfj-Sd-Zti" secondAttribute="leadingMargin" constant="50" id="WfS-gy-sym"/>
                             <constraint firstItem="vfE-Gv-CG8" firstAttribute="centerX" secondItem="mfj-Sd-Zti" secondAttribute="centerX" id="Xuq-rM-HB8"/>
                             <constraint firstItem="ioj-Y3-Pgh" firstAttribute="centerX" secondItem="mfj-Sd-Zti" secondAttribute="centerX" id="cPQ-E1-a8M"/>
+                            <constraint firstItem="0sg-cO-6t6" firstAttribute="leading" secondItem="Ats-du-KGQ" secondAttribute="leading" constant="16" id="cc9-Xe-5aJ"/>
                             <constraint firstItem="eKV-B3-J90" firstAttribute="centerX" secondItem="mfj-Sd-Zti" secondAttribute="centerX" id="dw2-P4-rY2"/>
                             <constraint firstItem="Q9c-zk-Gyh" firstAttribute="top" secondItem="pSv-ds-oPU" secondAttribute="bottom" constant="100" id="ekK-hy-lZQ"/>
                             <constraint firstItem="Ats-du-KGQ" firstAttribute="trailing" secondItem="uEd-nU-1mg" secondAttribute="trailing" id="fSq-6u-pwS"/>
                             <constraint firstItem="vfE-Gv-CG8" firstAttribute="centerY" secondItem="mfj-Sd-Zti" secondAttribute="centerY" id="htd-HS-mhd"/>
+                            <constraint firstItem="0sg-cO-6t6" firstAttribute="top" secondItem="Ats-du-KGQ" secondAttribute="top" constant="13" id="l85-VA-wKY"/>
                             <constraint firstItem="eKV-B3-J90" firstAttribute="leading" secondItem="Ats-du-KGQ" secondAttribute="leading" id="mXp-Fv-Ouc"/>
                             <constraint firstItem="uEd-nU-1mg" firstAttribute="centerX" secondItem="mfj-Sd-Zti" secondAttribute="centerX" id="n4Q-SK-KqS"/>
                             <constraint firstItem="ioj-Y3-Pgh" firstAttribute="leading" secondItem="Ats-du-KGQ" secondAttribute="leading" id="sVd-6P-J89"/>
                             <constraint firstItem="Ats-du-KGQ" firstAttribute="trailing" secondItem="ioj-Y3-Pgh" secondAttribute="trailing" id="tzc-51-5n7"/>
                             <constraint firstItem="Ats-du-KGQ" firstAttribute="bottom" secondItem="Q9c-zk-Gyh" secondAttribute="bottom" constant="40" id="xa3-J4-dnZ"/>
-                            <constraint firstItem="ioj-Y3-Pgh" firstAttribute="top" secondItem="Ats-du-KGQ" secondAttribute="top" constant="42" id="zt3-BJ-TR9"/>
+                            <constraint firstItem="ioj-Y3-Pgh" firstAttribute="top" secondItem="Ats-du-KGQ" secondAttribute="top" constant="60" id="zt3-BJ-TR9"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Ats-du-KGQ"/>
                     </view>
@@ -449,13 +462,14 @@
                         <outlet property="dfuStatusLabel" destination="ioj-Y3-Pgh" id="uH5-Y2-MLb"/>
                         <outlet property="dfuUploadProgressView" destination="Q9c-zk-Gyh" id="8kd-JG-gZw"/>
                         <outlet property="dfuUploadStatus" destination="uEd-nU-1mg" id="XrO-Sb-PXO"/>
+                        <outlet property="findFileOnPasteboardButton" destination="0sg-cO-6t6" id="5JR-wa-qdG"/>
                         <outlet property="peripheralNameLabel" destination="eKV-B3-J90" id="9dc-S3-cIq"/>
                         <outlet property="stopProcessButton" destination="vfE-Gv-CG8" id="i3M-Oe-c4Z"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OkP-ZW-FJ6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2492" y="824"/>
+            <point key="canvasLocation" x="2492" y="823.53823088455783"/>
         </scene>
     </scenes>
     <resources>

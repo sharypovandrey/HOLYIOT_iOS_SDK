@@ -173,6 +173,10 @@ extension DeviceVC: HolyDeviceProtocol {
 	func holyDevice(_ holyDevice: HolyDevice, didReceiveSFLData data: SFLData) {
 		tableView.sensorCell(for: 6)?.value.text = data.description
 	}
+	
+	func sensorReady(_ holyDevice: HolyDevice, sensorType: SensorType) {
+		
+	}
 }
 
 extension UITableView {

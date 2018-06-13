@@ -90,6 +90,15 @@ protocol HolyDeviceProtocol: NSObjectProtocol {
 	- holyDevice: The HolyDevice object informing the delegate of this event
 	*/
     func disconnected(_ holyDevice: HolyDevice)
+	
+	/**
+	Tells the delegate that the device sensor with given SensorType is active
+	
+	- Parameters:
+	- holyDevice: The HolyDevice object informing the delegate of this event
+	- sensorType: The type of sersor which ready to receive commands
+	*/
+	func sensorReady(_ holyDevice: HolyDevice, sensorType: SensorType)
 }
 
 class HolyDevice: Device {
@@ -100,7 +109,13 @@ class HolyDevice: Device {
 
     fileprivate var magnetometerRange: MagnetometerRange = MagnetometerRange.MAGNETO_2000
 
-    weak var delegate: HolyDeviceProtocol?
+	weak var delegate: HolyDeviceProtocol? {
+		didSet {
+			requestSensorsReadiness()
+		}
+	}
+	
+	var sensorTypes: [SensorType] = [.power, .accelerometer, .gyroscope, .magnetometer, .barometer, .humidity, .temperature, .sfl]
 
     override func connected() {
         super.connected()
@@ -113,6 +128,7 @@ class HolyDevice: Device {
     }
 
     override func discoverSensor(_ sensor: Sensor) {
+		delegate?.sensorReady(self, sensorType: sensor.sensorType)
     }
 
     override func didUpdateValueFor(_ sensor: Sensor) {
@@ -138,12 +154,17 @@ class HolyDevice: Device {
         case .sfl:
             delegate?.holyDevice(self, didReceiveSFLData: sensor.sflData)
             break
-        case .status:
-            break
-        case .powerAnswer:
-            break
         default:
             break
         }
     }
+	
+	func requestSensorsReadiness() {
+		guard let delegate = delegate else { return }
+		for sensorType in sensorTypes {
+			if isSensorTypeReady(sensorType) {
+				delegate.sensorReady(self, sensorType: sensorType)
+			}
+		}
+	}
 }

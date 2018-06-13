@@ -87,6 +87,10 @@ extension SceneVC: HolyDeviceProtocol {
     func disconnected(_ holyDevice: HolyDevice) {
 
     }
+	
+	func sensorReady(_ holyDevice: HolyDevice, sensorType: SensorType) {
+		
+	}
 
     func holyDevice(_ holyDevice: HolyDevice, didReceiveSFLData data: SFLData) {
 

@@ -32,8 +32,6 @@ extension CBPeripheral {
 	func findCharacteristicWithSensorType(_ sensorType: SensorType) -> CBCharacteristic? {
 		guard let services = services else {return nil}
 		for service in services {
-
-			print("service \(service.id)")
 			if let characteristic = service.findCharacteristicWithSensorType(sensorType) {
 				return characteristic
 			}

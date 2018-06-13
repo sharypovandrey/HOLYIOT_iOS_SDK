@@ -70,6 +70,10 @@ class Device: NSObject, DiscoverProtocol {
     func readRSSI() {
         peripheral.readRSSI()
     }
+	
+	func isSensorTypeReady(_ sensorType: SensorType) -> Bool {
+		return peripheral.findCharacteristicWithSensorType(sensorType) != nil
+	}
 
     func turnOn() -> Bool {
         guard state == .connected else {return false}

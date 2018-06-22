@@ -14,7 +14,7 @@ To run the project input:
 
 # API
 
-To use the HolyIOT API add library in your project as a dependency
+Copy folder Core form HOLYIOT_iOS_SDK project to your project
 
 Begin to use:
 
@@ -44,6 +44,8 @@ To enable or disable data transmission use this method:
 To enable or disable data transmission for certain sensor use SensorType of this sensor and pass it to function:
 
 	device.setNotifyValue(isOn, for: sensorType)
+
+Instead of SensorType use .accelerometer, .gyroscope, .magnetometer, .barometer, .humidity, .temperature, .sfl,
 
 To update HolyIOT firmware call the function
 

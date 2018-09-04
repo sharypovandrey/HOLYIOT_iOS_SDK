@@ -7,7 +7,7 @@ Open a terminal and input:
 
 To run the project input:
 
-	carthage update —platform iOS
+	carthage update --platform iOS
 
 (it will update libraries for HolyIOT firmware updates https://github.com/NordicSemiconductor/IOS-Pods-DFU-Library)
 
